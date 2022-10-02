@@ -43,6 +43,7 @@ pipeline {
 		stage('final stage'){
 			steps{
 				sh 'df -h'
+				sh 'du -h'
 			}
 		}
 	}
