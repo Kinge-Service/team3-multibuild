@@ -6,6 +6,11 @@ pipeline {
 				checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Kinge-Service', url: 'https://github.com/Kinge-Service/team3-multibuild.git']]])
 			}
 		}
+		stage('git-clone'){
+			steps{
+				checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Kinge-Service', url: 'https://github.com/Kinge-Service/team3-multibuild.git']]])
+			}
+		}
 		stage('parallel -stage'){
 			when {
 				branch 'main'
