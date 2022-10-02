@@ -21,9 +21,6 @@ pipeline {
 			}
 		}
 		stage('second-parallel-stage'){
-			when {
-				branch ' develop'
-			}
 			parallel{
 				stage('parallel-job3'){
 					steps{
