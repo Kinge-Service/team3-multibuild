@@ -1,43 +1,43 @@
 pipeline {
 	agent any 
 	stages{
-		stage('parallel -stage'){
+		stage('parallel-stage'){
 			when {
 				branch 'main'
-				parallel{
-					stage('systemcheck'){
-						steps{
-							sh ' sudo systemctl status jenkins'
-						}
+			}
+			parallel{
+				stage('parallel-job1'){
+					steps{
+						sh ' sudo systemctl status jenkin'
 					}
-					stage('version-check'){
-						steps{
-							sh ' cat /etc/os-release'
-						}
+				}
+				stage('parallel-job2'){
+					steps{
+						echo "welcome to Kinge services"
 					}
 				}
 			}
-			stage('parallel-job2'){
-				when{
-					branch 'develop'
-					parallel{
-						stage('subjob1'){
-							steps{
-								echo "Welcome to Kinge Service"
-							}
-						}
-						stage('subjob2'){
-							steps{
-								sh 'lscpu'
-							}
-						}
-					}
-				}
-				stage('end of jobs'){
+		}
+		stage('second-parallel-stage'){
+			when {
+				branch ' develop'
+			}
+			parallel{
+				stage('parallel-job3'){
 					steps{
-						echo " end of all jobs"
+						sh 'lscpu'
 					}
 				}
+				stage('end of parallel-job'){
+					steps{
+						echo " end of jobs"
+					}
+				}
+			}
+		}
+		stage('final stage'){
+			steps{
+				echo "success"
 			}
 		}
 	}
