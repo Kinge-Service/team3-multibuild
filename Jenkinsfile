@@ -7,9 +7,6 @@ pipeline {
 			}
 		}
 		stage('parallel-stage'){
-			when {
-				branch 'main'
-			}
 			parallel{
 				stage('parallel-job1'){
 					steps{
